@@ -1,10 +1,10 @@
 kind: pipeline
 type: docker
-name: default
+name: rpmbuild
 
-steps:
-- name: greeting
-  image: alpine
-  commands:
-  - echo hello
-  - echo world
+- name: build-rpm
+  image: plugins/docker
+  - name: dockersock
+    path: "/var/run/docker.sock" # Mandatory
+  settings:
+    dockerfile: Dockerfile
