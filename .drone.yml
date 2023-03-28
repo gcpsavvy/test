@@ -1,10 +1,14 @@
+---
 kind: pipeline
 type: docker
 name: rpmbuild
 
+steps:
 - name: build-rpm
   image: plugins/docker
-  - name: dockersock
-    path: "/var/run/docker.sock" # Mandatory
   settings:
     dockerfile: Dockerfile
+    
+trigger:
+  branch:
+  - master
